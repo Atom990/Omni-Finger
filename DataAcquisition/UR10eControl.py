@@ -1,45 +1,53 @@
 import numpy as np
-import DeepClawBenchmark.deepclaw.driver.arms.UR10eController as controller
+import DeepClawBenchmark.deepclaw.driver.arms.UR10eController as Controller
+import DataAcquisition.Finger as Finger
 
-h1 = 0.1
-h2 = 0.1
-h3 = 0.1
-D = 0.1
-W1 = 0.1
-W2 = 0.1
+depth_1 = 0
+depth_2 = 0
+depth_3 = 0
+depth_4 = 0
 
-x0 = 0.1
-y0 = 0.2
-z0 = 0.3
-roll0 = 0
-pitch0 = 0
-yaw0 = 0
+finger = Finger.Finger(0, 0, [1, 2, 3], [4, 5], 0, 0)
 
-depth_1 = 0.01
-depth_2 = 0.02
-depth_3 = 0.03
-depth_4 = 0.04
-
-theta = 0  # rad
-
-init_pose_0 = np.array([x0, y0, z0, roll0, pitch0, yaw0])
-init_pose_1 = np.array([W2, 0, h3, roll0, pitch0, yaw0])
-
-P = init_pose_0 - init_pose_1
-
-robot = UR10eController(
-    '.DeepClawBenchmark/configs/robcell-ur10e-hande-d435/ur10e.yaml')
+init_pose_base = np.array([0, 0, 0, 0, 0, 0])
+init_pose_finger = np.array([finger.a / 2, 0, finger.h_3, 0, 0, 0])
 
 
-def cal_move_in_pose_0(side, depth, init_pose_0_):
-    if side == 0:
-        move_in_pose = [init_pose_0_[0], init_pose_0_[1] - depth * np.cos(theta), init_pose_0_[2] - depth * np.sin(theta), roll0, pitch0, yaw0]
-    elif side == 1:
-        move_in_pose = [init_pose_0_[0], init_pose_0_[1] + depth * np.cos(theta), init_pose_0_[2] - depth * np.sin(theta), roll0, pitch0, yaw0]
+def move_to_next_point(init_pose_, move_direction, stride):
+    if move_direction == 'horizontal':
+        next_pose = init_pose_ + np.array([
+            -stride, 0, 0, 0, 0, 0])
+    elif move_direction == 'vertical':
+        next_pose = init_pose_ + np.array([
+            -stride * np.cos(finger.beta), -stride * np.cos(finger.alpha),
+            stride * np.sin(finger.alpha) * np.sin(finger.theta_2), 0, 0, 0])
+    else:
+        next_pose = init_pose_
+        print('Wrong parameters!')
+    return next_pose
 
-    return move_in_pose
+
+def press_finger(init_pose_, depth):
+    next_pose = init_pose_ + np.array([0, -depth * np.sin(finger.theta_1), -depth * np.cos(finger.theta_1), 0, 0, 0])
+    return next_pose
 
 
-if __name__ == "__main__":
-    # move to initial state
-    robot.move_p(init_pose_0, 0.8, 1.2)
+if __name__ == '__main__':
+    robot = Controller.UR10eController('../DeepClawBenchmark/configs/robcell-ur10e-hande-d435/ur10e.yaml')
+    # move to the initial point
+    robot.move_p(init_pose_base, 0.5, 1)
+    # get the transformation vector: pose_base = pose_finger + T
+    T = init_pose_base - init_pose_finger
+
+    # TODO
+    # path 1: from init point to move downwards
+
+    # path 2: go back to the init point, move horizontally
+
+    # path 3: move downwards
+
+    # path 4: move horizontal
+
+    # path 5: move horizontal
+
+    # save data
