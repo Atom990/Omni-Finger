@@ -7,7 +7,9 @@ depth_2 = 0
 depth_3 = 0
 depth_4 = 0
 
-finger = Finger.Finger(0, 0, [1, 2, 3], [4, 5], 0, 0)
+# a, b, [h_1, h_2, h_3], [theta_1, theta_2], alpha, beta
+finger = Finger.Finger(0, 0, [0.03042, 0.05542, 0.08601], [78 * np.pi / 180, 84.29 * np.pi / 180], 78.06 * np.pi / 180,
+                       84.41 * np.pi / 180)
 
 init_pose_base = np.array([0, 0, 0, 0, 0, 0])
 init_pose_finger = np.array([finger.a / 2, 0, finger.h_3, 0, 0, 0])
