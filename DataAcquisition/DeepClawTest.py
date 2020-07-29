@@ -1,10 +1,14 @@
 import DeepClawBenchmark.deepclaw.driver.arms.UR10eController as Controller
 import numpy as np
-import DataAcquisition.Finger as Finger
+import cv2
+import Finger
+import FTReading
 
 big_finger = Finger.Finger(0, 0, [0.03042, 0.05542, 0.08601], [78 * np.pi / 180, 84.29 * np.pi / 180],
                            78.06 * np.pi / 180, 84.41 * np.pi / 180)
-
+cam = cv2.VideoCapture(2)
+FTSensor = FTReading.FTReading("192.168.1.1")
+FTSensor.InitFT()
 d = 0.004  # press depth
 
 
@@ -91,8 +95,8 @@ if __name__ == '__main__':
                                            stride=0.005,
                                            move=True))
         press_finger(pose[i], big_finger, d, move=True)
-        # save sensor data
-        # save camera data
+        ret, picture = cam.read()
+        cv2.imwrite('./Pictures/{index}.jpg'.format(index=i), picture)
         robot.move_p(pose[i])
 
     # column 2
