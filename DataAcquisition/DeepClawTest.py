@@ -8,8 +8,11 @@ big_finger = Finger.Finger(0, 0, [0.03042, 0.05542, 0.08601], [78 * np.pi / 180,
                            78.06 * np.pi / 180, 84.41 * np.pi / 180)
 cam = cv2.VideoCapture(2)
 FTSensor = FTReading.FTReading("192.168.1.1")
+
 FTSensor.InitFT()
-d = 0.004  # press depth
+
+depth_list = [0.008, 0.010, 0.012, 0.014, 0.016, 0.018, 0.020]  # press depth
+D = 0.005  # diameter
 
 
 def press_finger(init_pose_, finger_, depth, move=True):
@@ -45,30 +48,19 @@ if __name__ == '__main__':
     #          /           \
     #         /____row 3____\
     init_pose_col_1_base = np.array([0.470, -0.560, 0.133, 102 * np.pi / 180, 0, 0])
-    init_pose_col_2_base = move_to_next_point(init_pose_=init_pose_col_1_base,
-                                              finger=big_finger,
-                                              move_direction='horizontal',
-                                              stride=0,
-                                              move=False)
-    init_pose_row_1_base = move_to_next_point(init_pose_=init_pose_col_1_base,
-                                              finger=big_finger,
-                                              move_direction='horizontal',
-                                              stride=0,
-                                              move=False)
-    init_pose_row_2_base = move_to_next_point(init_pose_=move_to_next_point(init_pose_col_1_base, big_finger, 'vertical', 0, move=False),
-                                              finger=big_finger,
-                                              move_direction='horizontal',
-                                              stride=0,
-                                              move=False)
-    init_pose_row_3_base = move_to_next_point(init_pose_=move_to_next_point(init_pose_col_1_base, big_finger, 'vertical', 0, move=False),
-                                              finger=big_finger,
-                                              move_direction='horizontal',
-                                              stride=0,
-                                              move=False)
+    init_pose_col_1_finger = np.array([0.01285, 0.0028, 0.12191, 102 * np.pi / 180, 0, 0])
+
+    T = init_pose_col_1_base - init_pose_col_1_finger
+
+    init_pose_col_2_base = np.array([-0.01285, 0.0028, 0.12191, 102 * np.pi / 180, 0, 0]) + T
+
+    init_pose_row_1_base = np.array([0.010, 0.00322, 0.12264, 90 * np.pi / 180, 0, 0]) + T
+    init_pose_row_2_base = np.array([0.010, 0.01189, 0.0791, 102 * np.pi / 180, 0, 0]) + T
+    init_pose_row_3_base = np.array([0.0125, 0.01948, 0.04342, 102 * np.pi / 180, 0, 0]) + T
 
     pose = []
     sensor_data = []
-    camera_data = []
+    press_info_data = []
 
     col_1_point = 21
     col_2_point = 21
@@ -82,83 +74,130 @@ if __name__ == '__main__':
     row_2_index = range(row_1_index.stop, row_1_index.stop + row_2_point)
     row_3_index = range(row_2_index.stop, row_2_index.stop + row_3_point)
 
-    # start
-    # column 1
-    for i in col_1_index:
-        if i == col_1_index[0]:
-            pose.append(init_pose_col_1_base)
-            robot.move_p(pose[0])
-        else:
-            pose.append(move_to_next_point(init_pose_=pose[i - 1],
-                                           finger=big_finger,
-                                           move_direction='vertical',
-                                           stride=0.005,
-                                           move=True))
-        press_finger(pose[i], big_finger, d, move=True)
-        ret, picture = cam.read()
-        cv2.imwrite('./Pictures/{index}.jpg'.format(index=i), picture)
-        robot.move_p(pose[i])
+    for d in depth_list:
+        # start
+        # column 1
+        for i in col_1_index:
+            if i == col_1_index[0]:
+                pose.append(init_pose_col_1_base)
+                robot.move_p(pose[0])
+            else:
+                pose.append(move_to_next_point(init_pose_=pose[i - 1],
+                                               finger=big_finger,
+                                               move_direction='vertical',
+                                               stride=0.005,
+                                               move=True))
+            press_finger(pose[i], big_finger, d, move=True)
+            ret, picture = cam.read()
+            force_data = FTSensor.GetReading(1000)
 
-    # column 2
-    for i in col_2_index:
-        if i == col_2_index[0]:
-            pose.append(init_pose_col_2_base)
-            robot.move_p(pose[0])
-        else:
-            pose.append(move_to_next_point(init_pose_=pose[i - 1],
-                                           finger=big_finger,
-                                           move_direction='vertical',
-                                           stride=0.005,
-                                           move=True))
-        press_finger(pose[i], big_finger, d, move=True)
-        # save sensor data
-        # save camera data
-        robot.move_p(pose[i])
+            pose_finger = pose[i] - T
 
-    # row 1
-    for i in row_1_index:
-        if i == row_1_index[0]:
-            pose.append(init_pose_row_1_base)
-            robot.move_p(pose[0])
-        else:
-            pose.append(move_to_next_point(init_pose_=pose[i - 1],
-                                           finger=big_finger,
-                                           move_direction='horizontal',
-                                           stride=0.005,
-                                           move=True))
-        press_finger(pose[i], big_finger, d, move=True)
-        # save sensor data
-        # save camera data
-        robot.move_p(pose[i])
+            sensor_data.append(force_data)
 
-    # row 2
-    for i in row_2_index:
-        if i == row_2_index[0]:
-            pose.append(init_pose_row_1_base)
-            robot.move_p(pose[0])
-        else:
-            pose.append(move_to_next_point(init_pose_=pose[i - 1],
-                                           finger=big_finger,
-                                           move_direction='horizontal',
-                                           stride=0.005,
-                                           move=True))
-        press_finger(pose[i], big_finger, d, move=True)
-        # save sensor data
-        # save camera data
-        robot.move_p(pose[i])
+            press_info_data.append(np.hstack((D, d, pose_finger[:3])))
+            cv2.imwrite('./Data/Diameter_{Diameter}mm/depth_{depth}mm/{index}.jpg'.format(Diameter=D, depth=d, index=i), picture)
 
-    # row 3
-    for i in row_3_index:
-        if i == row_3_index[0]:
-            pose.append(init_pose_row_1_base)
-            robot.move_p(pose[0])
-        else:
-            pose.append(move_to_next_point(init_pose_=pose[i - 1],
-                                           finger=big_finger,
-                                           move_direction='horizontal',
-                                           stride=0.005,
-                                           move=True))
-        press_finger(pose[i], big_finger, d, move=True)
-        # save sensor data
-        # save camera data
-        robot.move_p(pose[i])
+            robot.move_p(pose[i])
+
+        # column 2
+        for i in col_2_index:
+            if i == col_2_index[0]:
+                pose.append(init_pose_col_2_base)
+                robot.move_p(pose[0])
+            else:
+                pose.append(move_to_next_point(init_pose_=pose[i - 1],
+                                               finger=big_finger,
+                                               move_direction='vertical',
+                                               stride=0.005,
+                                               move=True))
+            press_finger(pose[i], big_finger, d, move=True)
+            ret, picture = cam.read()
+            force_data = FTSensor.GetReading(1000)
+
+            pose_finger = pose[i] - T
+
+            sensor_data.append(force_data)
+
+            press_info_data.append(np.hstack((D, d, pose_finger[:3])))
+            cv2.imwrite('./Data/Diameter_{Diameter}mm/depth_{depth}mm/{index}.jpg'.format(Diameter=D, depth=d, index=i), picture)
+
+            robot.move_p(pose[i])
+
+        # row 1
+        for i in row_1_index:
+            if i == row_1_index[0]:
+                pose.append(init_pose_row_1_base)
+                robot.move_p(pose[0])
+            else:
+                pose.append(move_to_next_point(init_pose_=pose[i - 1],
+                                               finger=big_finger,
+                                               move_direction='horizontal',
+                                               stride=0.005,
+                                               move=True))
+            press_finger(pose[i], big_finger, d, move=True)
+            ret, picture = cam.read()
+            force_data = FTSensor.GetReading(1000)
+
+            pose_finger = pose[i] - T
+
+            sensor_data.append(force_data)
+
+            press_info_data.append(np.hstack((D, d, pose_finger[:3])))
+            cv2.imwrite('./Data/Diameter_{Diameter}mm/depth_{depth}mm/{index}.jpg'.format(Diameter=D, depth=d, index=i), picture)
+
+            robot.move_p(pose[i])
+
+        # row 2
+        for i in row_2_index:
+            if i == row_2_index[0]:
+                pose.append(init_pose_row_1_base)
+                robot.move_p(pose[0])
+            else:
+                pose.append(move_to_next_point(init_pose_=pose[i - 1],
+                                               finger=big_finger,
+                                               move_direction='horizontal',
+                                               stride=0.005,
+                                               move=True))
+            press_finger(pose[i], big_finger, d, move=True)
+            ret, picture = cam.read()
+            force_data = FTSensor.GetReading(1000)
+
+            pose_finger = pose[i] - T
+
+            sensor_data.append(force_data)
+
+            press_info_data.append(np.hstack((D, d, pose_finger[:3])))
+            cv2.imwrite('./Data/Diameter_{Diameter}mm/depth_{depth}mm/{index}.jpg'.format(Diameter=D, depth=d, index=i), picture)
+
+            robot.move_p(pose[i])
+
+        # row 3
+        for i in row_3_index:
+            if i == row_3_index[0]:
+                pose.append(init_pose_row_1_base)
+                robot.move_p(pose[0])
+            else:
+                pose.append(move_to_next_point(init_pose_=pose[i - 1],
+                                               finger=big_finger,
+                                               move_direction='horizontal',
+                                               stride=0.005,
+                                               move=True))
+            press_finger(pose[i], big_finger, d, move=True)
+            ret, picture = cam.read()
+            force_data = FTSensor.GetReading(1000)
+
+            pose_finger = pose[i] - T
+
+            sensor_data.append(force_data)
+
+            press_info_data.append(np.hstack((D, d, pose_finger[:3])))
+            cv2.imwrite('./Data/Diameter_{Diameter}mm/depth_{depth}mm/{index}.jpg'.format(Diameter=D, depth=d, index=i), picture)
+
+            robot.move_p(pose[i])
+
+    sensor_data = np.array(sensor_data)
+    press_info_data = np.array(press_info_data)
+
+    np.save('./Data/Diameter_{Diameter}mm/{Diameter}_ForceSensor.npy'.format(Diameter=D), sensor_data)
+    np.save('./Data/Diameter_{Diameter}mm/{Diameter}_PressInfo.npy'.format(Diameter=D), press_info_data)
