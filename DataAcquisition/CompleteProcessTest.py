@@ -6,6 +6,9 @@ import FTReading
 
 big_finger = Finger.Finger(0, 0, [0.03042, 0.05542, 0.08601], [78 * np.pi / 180, 84.29 * np.pi / 180],
                            78.06 * np.pi / 180, 84.41 * np.pi / 180)
+small_finger = Finger.Finger(0, 0, [0.03042, 0.05542, 0.08601], [78 * np.pi / 180, 84.29 * np.pi / 180],
+                             78.06 * np.pi / 180, 84.41 * np.pi / 180)
+
 cam = cv2.VideoCapture(2)
 FTSensor = FTReading.FTReading("192.168.1.1")
 
@@ -47,6 +50,20 @@ if __name__ == '__main__':
     # column 1  /__row 2__\  column 2
     #          /           \
     #         /____row 3____\
+
+    # big finger
+    # init_pose_col_1_base = np.array([0.470, -0.560, 0.133, 102 * np.pi / 180, 0, 0])
+    # init_pose_col_1_finger = np.array([0.01285, 0.0028, 0.12191, 102 * np.pi / 180, 0, 0])
+    #
+    # T = init_pose_col_1_base - init_pose_col_1_finger
+    #
+    # init_pose_col_2_base = np.array([-0.01285, 0.0028, 0.12191, 102 * np.pi / 180, 0, 0]) + T
+    #
+    # init_pose_row_1_base = np.array([0.010, 0.00322, 0.12264, 90 * np.pi / 180, 0, 0]) + T
+    # init_pose_row_2_base = np.array([0.010, 0.01189, 0.0791, 102 * np.pi / 180, 0, 0]) + T
+    # init_pose_row_3_base = np.array([0.0125, 0.01948, 0.04342, 102 * np.pi / 180, 0, 0]) + T
+
+    # small finger
     init_pose_col_1_base = np.array([0.470, -0.560, 0.133, 102 * np.pi / 180, 0, 0])
     init_pose_col_1_finger = np.array([0.01285, 0.0028, 0.12191, 102 * np.pi / 180, 0, 0])
 

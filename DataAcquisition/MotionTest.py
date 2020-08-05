@@ -6,9 +6,12 @@ import FTReading
 
 big_finger = Finger.Finger(0, 0, [0.03042, 0.05542, 0.08601], [78 * np.pi / 180, 84.29 * np.pi / 180],
                            78.06 * np.pi / 180, 84.41 * np.pi / 180)
+small_finger = Finger.Finger(0, 0, [0.03042, 0.05542, 0.08601], [78 * np.pi / 180, 84.29 * np.pi / 180],
+                             78.06 * np.pi / 180, 84.41 * np.pi / 180)
 
 depth_list = [0.008, 0.010, 0.012, 0.014, 0.016, 0.018, 0.020]  # press depth
 D = 0.015  # diameter
+S = 0.005  # stride
 
 
 def press_finger(init_pose_, finger_, depth, move=True):
@@ -49,17 +52,31 @@ if __name__ == '__main__':
     #          /           \
     #         /____row 3____\
 
-    calibration_point_pose_base = np.array([0.478590, -0.417430, 0.152090, 1.362, 1.362, -1.103])
-    calibration_point_pose_finger = np.array([0.00428, 0.01189, 0.0791, 1.362, 1.362, -1.103])
+    # big finger
+    # calibration_point_pose_base = np.array([0.478660, -0.462630, 0.142790, 1.782, 0, 0])
+    # calibration_point_pose_finger = np.array([0.00428, 0.01189, 0.0791, 1.782, 0, 0])
+    #
+    # T = calibration_point_pose_base - calibration_point_pose_finger
+    #
+    # init_pose_col_1_base = np.array([0.01285, 0.0028, 0.12191, 1.782, 0, 0]) + T
+    # init_pose_col_2_base = np.array([-0.01285, 0.0028, 0.12191, 1.782, 0, 0]) + T
+    #
+    # init_pose_row_1_base = np.array([0.010, 0.00322, 0.12264, 1.571, 0, 0]) + T
+    # init_pose_row_2_base = np.array([0.010, 0.01189, 0.0791, 1.782, 0, 0]) + T
+    # init_pose_row_3_base = np.array([0.0125, 0.01948, 0.04342, 1.782, 0, 0]) + T
+
+    # small finger
+    calibration_point_pose_base = np.array([0.478660, -0.462630, 0.142790, 1.782, 0, 0])  # TODO: change this value
+    calibration_point_pose_finger = np.array([0.005, 0.01364, 0.03042, 1.782, 0, 0])
 
     T = calibration_point_pose_base - calibration_point_pose_finger
 
-    init_pose_col_1_base = np.array([0.01285, 0.0028, 0.12191, 1.362, 1.362, -1.103]) + T
-    init_pose_col_2_base = np.array([-0.01285, 0.0028, 0.12191, 1.362, 1.362, -1.103]) + T
+    init_pose_col_1_base = np.array([0.0090, 0.00196, 0.08542, 1.782, 0, 0]) + T
+    init_pose_col_2_base = np.array([-0.009, 0.00196, 0.08542, 1.782, 0, 0]) + T
 
-    init_pose_row_1_base = np.array([0.010, 0.00322, 0.12264, 1.362, 1.362, -1.103]) + T
-    init_pose_row_2_base = np.array([0.010, 0.01189, 0.0791, 1.362, 1.362, -1.103]) + T
-    init_pose_row_3_base = np.array([0.0125, 0.01948, 0.04342, 1.362, 1.362, -1.103]) + T
+    init_pose_row_1_base = np.array([0.0075, 0.00833, 0.05542, 1.571, 0, 0]) + T  # TODO: change this value
+    init_pose_row_2_base = np.array([0.0075, 0.00833, 0.05542, 1.782, 0, 0]) + T
+    init_pose_row_3_base = np.array([0.0100, 0.01364, 0.03042, 1.782, 0, 0]) + T
 
     pose = []
 
@@ -86,9 +103,9 @@ if __name__ == '__main__':
                 robot.move_p(pose[i])
             else:
                 pose.append(move_to_next_point(init_pose_=pose[i - 1],
-                                               finger=big_finger,
+                                               finger=small_finger,
                                                move_direction='vertical_col_1',
-                                               stride=0.005,
+                                               stride=S,
                                                move=True))
             press_finger(pose[i], big_finger, d, move=True)
 
@@ -103,9 +120,9 @@ if __name__ == '__main__':
                 robot.move_p(pose[i])
             else:
                 pose.append(move_to_next_point(init_pose_=pose[i - 1],
-                                               finger=big_finger,
+                                               finger=small_finger,
                                                move_direction='vertical_col_2',
-                                               stride=0.005,
+                                               stride=S,
                                                move=True))
             press_finger(pose[i], big_finger, d, move=True)
 
@@ -120,9 +137,9 @@ if __name__ == '__main__':
                 robot.move_p(pose[i])
             else:
                 pose.append(move_to_next_point(init_pose_=pose[i - 1],
-                                               finger=big_finger,
+                                               finger=small_finger,
                                                move_direction='horizontal',
-                                               stride=0.005,
+                                               stride=S,
                                                move=True))
             press_finger(pose[i], big_finger, d, move=True)
 
@@ -137,9 +154,9 @@ if __name__ == '__main__':
                 robot.move_p(pose[i])
             else:
                 pose.append(move_to_next_point(init_pose_=pose[i - 1],
-                                               finger=big_finger,
+                                               finger=small_finger,
                                                move_direction='horizontal',
-                                               stride=0.005,
+                                               stride=S,
                                                move=True))
             press_finger(pose[i], big_finger, d, move=True)
 
@@ -154,9 +171,9 @@ if __name__ == '__main__':
                 robot.move_p(pose[i])
             else:
                 pose.append(move_to_next_point(init_pose_=pose[i - 1],
-                                               finger=big_finger,
+                                               finger=small_finger,
                                                move_direction='horizontal',
-                                               stride=0.005,
+                                               stride=S,
                                                move=True))
             press_finger(pose[i], big_finger, d, move=True)
 
