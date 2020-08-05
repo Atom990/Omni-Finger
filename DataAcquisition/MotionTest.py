@@ -74,7 +74,7 @@ if __name__ == '__main__':
     init_pose_col_1_base = np.array([0.0090, 0.00196, 0.08542, 1.782, 0, 0]) + T
     init_pose_col_2_base = np.array([-0.009, 0.00196, 0.08542, 1.782, 0, 0]) + T
 
-    init_pose_row_1_base = np.array([0.0075, 0.00833, 0.05542, 1.571, 0, 0]) + T  # TODO: change this value
+    init_pose_row_1_base = np.array([0.0075, 0.00225, 0.08601, 1.571, 0, 0]) + T
     init_pose_row_2_base = np.array([0.0075, 0.00833, 0.05542, 1.782, 0, 0]) + T
     init_pose_row_3_base = np.array([0.0100, 0.01364, 0.03042, 1.782, 0, 0]) + T
 
