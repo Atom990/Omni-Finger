@@ -36,13 +36,13 @@ def move_to_next_point(init_pose_, finger, move_direction, stride, move=True):
 small_finger = Finger.Finger([78 * np.pi / 180, 84.29 * np.pi / 180], 78.06 * np.pi / 180, 84.41 * np.pi / 180)
 
 # depth_list = [0.008, 0.010, 0.012, 0.014, 0.016, 0.018, 0.020]  # press depth
-depth_list = [0.008, 0.010]
+depth_list = [0.010]
 D = 0.010  # diameter
 S = 0.005  # stride
 
 # small finger
 calibration_point_pose_base = np.array([0.374560, -0.174580, -0.015080, 2.221, 2.221, 0])
-calibration_point_pose_finger = np.array([-0.100, 0.100, -0.077, 2.221, 2.221, 0])
+calibration_point_pose_finger = np.array([-0.250, 0.350, -0.077, 2.221, 2.221, 0])
 
 # transform vector between the two frames
 T = calibration_point_pose_base - calibration_point_pose_finger
@@ -158,7 +158,7 @@ for d in depth_list:
         press_finger(pose[i], small_finger, d, move=True)
         # read from camera
         ret, picture = cam.read()
-        cv2.imwrite('./Data/Diameter_{Diameter}mm/depth_{depth}mm/{index}.jpg'.format(Diameter=D, depth=d, index=i), picture)
+        cv2.imwrite('./Data/Diameter_{Diameter}mm_depth_{depth}mm_{index}.jpg'.format(Diameter=D * 1000, depth=d * 1000, index=i), picture)
         # read from FT sensor
         force_data = FTSensor.GetReading(1000)
         FT_data.append(force_data)
@@ -180,7 +180,7 @@ for d in depth_list:
         press_finger(pose[i], small_finger, d, move=True)
         # read from camera
         ret, picture = cam.read()
-        cv2.imwrite('./Data/Diameter_{Diameter}mm/depth_{depth}mm/{index}.jpg'.format(Diameter=D, depth=d, index=i), picture)
+        cv2.imwrite('./Data/Diameter_{Diameter}mm_depth_{depth}mm_{index}.jpg'.format(Diameter=D * 1000, depth=d * 1000, index=i), picture)
         # read from FT sensor
         force_data = FTSensor.GetReading(1000)
         FT_data.append(force_data)
@@ -202,7 +202,7 @@ for d in depth_list:
         press_finger(pose[i], small_finger, d, move=True)
         # read from camera
         ret, picture = cam.read()
-        cv2.imwrite('./Data/Diameter_{Diameter}mm/depth_{depth}mm/{index}.jpg'.format(Diameter=D, depth=d, index=i), picture)
+        cv2.imwrite('./Data/Diameter_{Diameter}mm_depth_{depth}mm_{index}.jpg'.format(Diameter=D * 1000, depth=d * 1000, index=i), picture)
         # read from FT sensor
         force_data = FTSensor.GetReading(1000)
         FT_data.append(force_data)
@@ -224,7 +224,7 @@ for d in depth_list:
         press_finger(pose[i], small_finger, d, move=True)
         # read from camera
         ret, picture = cam.read()
-        cv2.imwrite('./Data/Diameter_{Diameter}mm/depth_{depth}mm/{index}.jpg'.format(Diameter=D, depth=d, index=i), picture)
+        cv2.imwrite('./Data/Diameter_{Diameter}mm_depth_{depth}mm_{index}.jpg'.format(Diameter=D * 1000, depth=d * 1000, index=i), picture)
         # read from FT sensor
         force_data = FTSensor.GetReading(1000)
         FT_data.append(force_data)
@@ -246,7 +246,7 @@ for d in depth_list:
         press_finger(pose[i], small_finger, d, move=True)
         # read from camera
         ret, picture = cam.read()
-        cv2.imwrite('./Data/Diameter_{Diameter}mm/depth_{depth}mm/{index}.jpg'.format(Diameter=D, depth=d, index=i), picture)
+        cv2.imwrite('./Data/Diameter_{Diameter}mm_depth_{depth}mm_{index}.jpg'.format(Diameter=D * 1000, depth=d * 1000, index=i), picture)
         # read from FT sensor
         force_data = FTSensor.GetReading(1000)
         FT_data.append(force_data)
@@ -268,7 +268,7 @@ for d in depth_list:
         press_finger(pose[i], small_finger, d, move=True)
         # read from camera
         ret, picture = cam.read()
-        cv2.imwrite('./Data/Diameter_{Diameter}mm/depth_{depth}mm/{index}.jpg'.format(Diameter=D, depth=d, index=i), picture)
+        cv2.imwrite('./Data/Diameter_{Diameter}mm_depth_{depth}mm_{index}.jpg'.format(Diameter=D * 1000, depth=d * 1000, index=i), picture)
         # read from FT sensor
         force_data = FTSensor.GetReading(1000)
         FT_data.append(force_data)
@@ -290,7 +290,7 @@ for d in depth_list:
         press_finger(pose[i], small_finger, d, move=True)
         # read from camera
         ret, picture = cam.read()
-        cv2.imwrite('./Data/Diameter_{Diameter}mm/depth_{depth}mm/{index}.jpg'.format(Diameter=D, depth=d, index=i), picture)
+        cv2.imwrite('./Data/Diameter_{Diameter}mm_depth_{depth}mm_{index}.jpg'.format(Diameter=D * 1000, depth=d * 1000, index=i), picture)
         # read from FT sensor
         force_data = FTSensor.GetReading(1000)
         FT_data.append(force_data)
@@ -312,7 +312,7 @@ for d in depth_list:
         press_finger(pose[i], small_finger, d, move=True)
         # read from camera
         ret, picture = cam.read()
-        cv2.imwrite('./Data/Diameter_{Diameter}mm/depth_{depth}mm/{index}.jpg'.format(Diameter=D, depth=d, index=i), picture)
+        cv2.imwrite('./Data/Diameter_{Diameter}mm_depth_{depth}mm_{index}.jpg'.format(Diameter=D * 1000, depth=d * 1000, index=i), picture)
         # read from FT sensor
         force_data = FTSensor.GetReading(1000)
         FT_data.append(force_data)
@@ -334,7 +334,7 @@ for d in depth_list:
         press_finger(pose[i], small_finger, d, move=True)
         # read from camera
         ret, picture = cam.read()
-        cv2.imwrite('./Data/Diameter_{Diameter}mm/depth_{depth}mm/{index}.jpg'.format(Diameter=D, depth=d, index=i), picture)
+        cv2.imwrite('./Data/Diameter_{Diameter}mm_depth_{depth}mm_{index}.jpg'.format(Diameter=D * 1000, depth=d * 1000, index=i), picture)
         # read from FT sensor
         force_data = FTSensor.GetReading(1000)
         FT_data.append(force_data)
@@ -356,7 +356,7 @@ for d in depth_list:
         press_finger(pose[i], small_finger, d, move=True)
         # read from camera
         ret, picture = cam.read()
-        cv2.imwrite('./Data/Diameter_{Diameter}mm/depth_{depth}mm/{index}.jpg'.format(Diameter=D, depth=d, index=i), picture)
+        cv2.imwrite('./Data/Diameter_{Diameter}mm_depth_{depth}mm_{index}.jpg'.format(Diameter=D * 1000, depth=d * 1000, index=i), picture)
         # read from FT sensor
         force_data = FTSensor.GetReading(1000)
         FT_data.append(force_data)
@@ -378,7 +378,7 @@ for d in depth_list:
         press_finger(pose[i], small_finger, d, move=True)
         # read from camera
         ret, picture = cam.read()
-        cv2.imwrite('./Data/Diameter_{Diameter}mm/depth_{depth}mm/{index}.jpg'.format(Diameter=D, depth=d, index=i), picture)
+        cv2.imwrite('./Data/Diameter_{Diameter}mm_depth_{depth}mm_{index}.jpg'.format(Diameter=D * 1000, depth=d * 1000, index=i), picture)
         # read from FT sensor
         force_data = FTSensor.GetReading(1000)
         FT_data.append(force_data)
@@ -400,7 +400,7 @@ for d in depth_list:
         press_finger(pose[i], small_finger, d, move=True)
         # read from camera
         ret, picture = cam.read()
-        cv2.imwrite('./Data/Diameter_{Diameter}mm/depth_{depth}mm/{index}.jpg'.format(Diameter=D, depth=d, index=i), picture)
+        cv2.imwrite('./Data/Diameter_{Diameter}mm_depth_{depth}mm_{index}.jpg'.format(Diameter=D * 1000, depth=d * 1000, index=i), picture)
         # read from FT sensor
         force_data = FTSensor.GetReading(1000)
         FT_data.append(force_data)
@@ -422,7 +422,7 @@ for d in depth_list:
         press_finger(pose[i], small_finger, d, move=True)
         # read from camera
         ret, picture = cam.read()
-        cv2.imwrite('./Data/Diameter_{Diameter}mm/depth_{depth}mm/{index}.jpg'.format(Diameter=D, depth=d, index=i), picture)
+        cv2.imwrite('./Data/Diameter_{Diameter}mm_depth_{depth}mm_{index}.jpg'.format(Diameter=D * 1000, depth=d * 1000, index=i), picture)
         # read from FT sensor
         force_data = FTSensor.GetReading(1000)
         FT_data.append(force_data)
@@ -444,7 +444,7 @@ for d in depth_list:
         press_finger(pose[i], small_finger, d, move=True)
         # read from camera
         ret, picture = cam.read()
-        cv2.imwrite('./Data/Diameter_{Diameter}mm/depth_{depth}mm/{index}.jpg'.format(Diameter=D, depth=d, index=i), picture)
+        cv2.imwrite('./Data/Diameter_{Diameter}mm_depth_{depth}mm_{index}.jpg'.format(Diameter=D * 1000, depth=d * 1000, index=i), picture)
         # read from FT sensor
         force_data = FTSensor.GetReading(1000)
         FT_data.append(force_data)
@@ -466,7 +466,7 @@ for d in depth_list:
         press_finger(pose[i], small_finger, d, move=True)
         # read from camera
         ret, picture = cam.read()
-        cv2.imwrite('./Data/Diameter_{Diameter}mm/depth_{depth}mm/{index}.jpg'.format(Diameter=D, depth=d, index=i), picture)
+        cv2.imwrite('./Data/Diameter_{Diameter}mm_depth_{depth}mm_{index}.jpg'.format(Diameter=D * 1000, depth=d * 1000, index=i), picture)
         # read from FT sensor
         force_data = FTSensor.GetReading(1000)
         FT_data.append(force_data)
@@ -488,7 +488,7 @@ for d in depth_list:
         press_finger(pose[i], small_finger, d, move=True)
         # read from camera
         ret, picture = cam.read()
-        cv2.imwrite('./Data/Diameter_{Diameter}mm/depth_{depth}mm/{index}.jpg'.format(Diameter=D, depth=d, index=i), picture)
+        cv2.imwrite('./Data/Diameter_{Diameter}mm_depth_{depth}mm_{index}.jpg'.format(Diameter=D * 1000, depth=d * 1000, index=i), picture)
         # read from FT sensor
         force_data = FTSensor.GetReading(1000)
         FT_data.append(force_data)
@@ -510,7 +510,7 @@ for d in depth_list:
         press_finger(pose[i], small_finger, d, move=True)
         # read from camera
         ret, picture = cam.read()
-        cv2.imwrite('./Data/Diameter_{Diameter}mm/depth_{depth}mm/{index}.jpg'.format(Diameter=D, depth=d, index=i), picture)
+        cv2.imwrite('./Data/Diameter_{Diameter}mm_depth_{depth}mm_{index}.jpg'.format(Diameter=D * 1000, depth=d * 1000, index=i), picture)
         # read from FT sensor
         force_data = FTSensor.GetReading(1000)
         FT_data.append(force_data)

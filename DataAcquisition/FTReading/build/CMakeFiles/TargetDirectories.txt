@@ -1,3 +1,3 @@
-/home/zixin/BionicDL/FTReading/build/CMakeFiles/rebuild_cache.dir
-/home/zixin/BionicDL/FTReading/build/CMakeFiles/FTReading.dir
-/home/zixin/BionicDL/FTReading/build/CMakeFiles/edit_cache.dir
+/home/zixin/FTReadingTest/FTReading/build/CMakeFiles/rebuild_cache.dir
+/home/zixin/FTReadingTest/FTReading/build/CMakeFiles/FTReading.dir
+/home/zixin/FTReadingTest/FTReading/build/CMakeFiles/edit_cache.dir

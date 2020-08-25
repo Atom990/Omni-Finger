@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/zixin/BionicDL/FTReading/src/Force.cpp" "/home/zixin/BionicDL/FTReading/build/CMakeFiles/FTReading.dir/src/Force.cpp.o"
-  "/home/zixin/BionicDL/FTReading/src/pyFT.cpp" "/home/zixin/BionicDL/FTReading/build/CMakeFiles/FTReading.dir/src/pyFT.cpp.o"
+  "/home/zixin/FTReadingTest/FTReading/src/Force.cpp" "/home/zixin/FTReadingTest/FTReading/build/CMakeFiles/FTReading.dir/src/Force.cpp.o"
+  "/home/zixin/FTReadingTest/FTReading/src/pyFT.cpp" "/home/zixin/FTReadingTest/FTReading/build/CMakeFiles/FTReading.dir/src/pyFT.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

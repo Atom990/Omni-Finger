@@ -14,7 +14,6 @@ int ForceSensor::GetSequence() const
     return sequence_;
 }
 
-
 void ForceSensor::InitFTResponse()
 {
     if (SocketConnect() != 0)
@@ -52,22 +51,22 @@ void ForceSensor::InitFTResponse()
         }
     }
 
-    for(auto& t : initftResponse_)
+    for (auto &t : initftResponse_)
     {
         t = .0;
     }
 
-    for(std::size_t i {}; i < ftResponseStack_.size(); i++)
+    for (std::size_t i{}; i < ftResponseStack_.size(); i++)
     {
-        for(std::size_t j {}; j < 6; j++)
+        for (std::size_t j{}; j < 6; j++)
         {
-            initftResponse_.at(j) += ftResponseStack_.at(i).at(j)/ftResponseStack_.size();
+            initftResponse_.at(j) += ftResponseStack_.at(i).at(j) / ftResponseStack_.size();
         }
     }
 
-    for(auto& t : initftResponse_)
+    for (auto &t : initftResponse_)
     {
-        std::cout<<t<<std::endl;
+        std::cout << t << std::endl;
     }
 
     SocketClose();
@@ -105,33 +104,32 @@ void ForceSensor::Read(int times)
         }
     }
 
-    for(auto& t : outputftResponse_)
+    for (auto &t : outputftResponse_)
     {
         t = .0;
     }
 
-    for(std::size_t i {}; i < ftResponseStack_.size(); i++)
+    for (std::size_t i{}; i < ftResponseStack_.size(); i++)
     {
-        for(std::size_t j {}; j < 6; j++)
+        for (std::size_t j{}; j < 6; j++)
         {
-            outputftResponse_.at(j) += ftResponseStack_.at(i).at(j)/ftResponseStack_.size();
+            outputftResponse_.at(j) += ftResponseStack_.at(i).at(j) / ftResponseStack_.size();
         }
     }
 
-    for(auto& t : outputftResponse_)
-    {
-        std::cout<<t<<std::endl;
-    }
+    // for (auto &t : outputftResponse_)
+    // {
+    //     std::cout << t << std::endl;
+    // }
+
+    fprintf(stdout, "Successfully read data from the FT sensor!\r\n");
 
     SocketClose();
 }
 
 void ForceSensor::SmoothReadings(int times)
 {
-
-
 }
-
 
 int ForceSensor::SocketConnect()
 {
@@ -151,7 +149,7 @@ int ForceSensor::SocketConnect()
     memcpy(&addr.sin_addr, he->h_addr_list[0], he->h_length);
     addr.sin_family = AF_INET;
     addr.sin_port = htons(DAQ_PORT);
-    fprintf(stdout, "Connecting to EtherDAQ\r\n");
+    fprintf(stdout, "Connecting to Ethernet DAQ\r\n");
     fflush(stdout);
 
     err = connect(socketHandle_, (struct sockaddr *)&addr, sizeof(addr));
@@ -163,19 +161,17 @@ int ForceSensor::SocketConnect()
     return 0;
 }
 
-
 void ForceSensor::SocketClose()
 {
     close(socketHandle_);
 }
-
 
 int ForceSensor::GetCalibrationInfo()
 {
     int i;
     int sendSuccess;
     int readSuccess;
-    ReadCalibrationCommand readCommand = { 0 };
+    ReadCalibrationCommand readCommand = {0};
     readCommand.command = READCALIBRATIONINFO;
     sendSuccess = send(socketHandle_, (const char *)&readCommand, sizeof(ReadCalibrationCommand), 0);
     if (sendSuccess < 0)
@@ -204,33 +200,31 @@ int ForceSensor::GetCalibrationInfo()
     return 0;
 }
 
-
-void ForceSensor::WriteLogs(const char * FileName)
+void ForceSensor::WriteLogs(const char *FileName)
 {
 
     std::ofstream out;
 
-    if(sequence_)
+    if (sequence_)
     {
-        out.open(FileName,std::ios::app);
+        out.open(FileName, std::ios::app);
     }
     else
     {
-        out.open(FileName,std::ios::ate);
+        out.open(FileName, std::ios::ate);
     }
 
-    out <<sequence_<<",";
-    for(std::size_t i {}; i < 5; i ++)
+    out << sequence_ << ",";
+    for (std::size_t i{}; i < 5; i++)
     {
-        out<<std::setprecision(4)<<outputftResponse_.at(i)<<",";
+        out << std::setprecision(4) << outputftResponse_.at(i) << ",";
     }
 
-    out<<std::setprecision(4)<<outputftResponse_.at(5)<<std::endl;
+    out << std::setprecision(4) << outputftResponse_.at(5) << std::endl;
 
     out.close();
 
     sequence_++;
-
 }
 
 ForceSensor::int16 ForceSensor::swap_int16(int16 val)
@@ -238,7 +232,7 @@ ForceSensor::int16 ForceSensor::swap_int16(int16 val)
     return (val << 8) | ((val >> 8) & 0xFF);
 }
 
-void ForceSensor::SwapFTResponseBytes(FTResponse * r)
+void ForceSensor::SwapFTResponseBytes(FTResponse *r)
 {
     r->header = htons(r->header);
     r->status = htons(r->status);
@@ -250,11 +244,9 @@ void ForceSensor::SwapFTResponseBytes(FTResponse * r)
     r->TorqueZ = swap_int16(r->TorqueZ);
 }
 
-
-
-int ForceSensor::ReadFT(FTResponse * r)
+int ForceSensor::ReadFT(FTResponse *r)
 {
-    FTReadCommand readCommand = { 0 };
+    FTReadCommand readCommand = {0};
     int readSuccess;
     int sendSuccess;
     readCommand.command = READFT;
@@ -282,7 +274,7 @@ int ForceSensor::ReadFT(FTResponse * r)
     return 0;
 }
 
-void ForceSensor::AccumulateReadings(FTResponse * r)
+void ForceSensor::AccumulateReadings(FTResponse *r)
 {
     //! Code Below will be excuted only when readSuccess = 0
     double Fx = (double)r->ForceX / (double)calibrationResponse_.countsPerForce * (double)calibrationResponse_.scaleFactors[0];
@@ -292,7 +284,7 @@ void ForceSensor::AccumulateReadings(FTResponse * r)
     double Ty = (double)r->TorqueY / (double)calibrationResponse_.countsPerTorque * (double)calibrationResponse_.scaleFactors[4];
     double Tz = (double)r->TorqueZ / (double)calibrationResponse_.countsPerTorque * (double)calibrationResponse_.scaleFactors[5];
 
-    std::array<double,6> ReadingOnece {Fx,Fy,Fz,Tx,Ty,Tz};
+    std::array<double, 6> ReadingOnece{Fx, Fy, Fz, Tx, Ty, Tz};
     ReadingOnece.at(0) -= initftResponse_.at(0);
     ReadingOnece.at(1) -= initftResponse_.at(1);
     ReadingOnece.at(2) -= initftResponse_.at(2);
@@ -301,19 +293,18 @@ void ForceSensor::AccumulateReadings(FTResponse * r)
     ReadingOnece.at(5) -= initftResponse_.at(5);
 
     ftResponseStack_.push_back(ReadingOnece);
-
 }
 
 std::vector<double> ForceSensor::PYRead(int times)
 {
-    for(auto& t : outputftResponse_)
+    for (auto &t : outputftResponse_)
     {
         t = .0;
     }
     Read(times);
     std::vector<double> output;
 
-    for(auto t: outputftResponse_)
+    for (auto t : outputftResponse_)
     {
         output.push_back(t);
     }

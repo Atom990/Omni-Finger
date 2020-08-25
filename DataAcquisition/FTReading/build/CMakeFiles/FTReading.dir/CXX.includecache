@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/zixin/BionicDL/FTReading/src/Force.cpp
+/home/zixin/FTReadingTest/FTReading/src/Force.cpp
 Force.h
-/home/zixin/BionicDL/FTReading/src/Force.h
+/home/zixin/FTReadingTest/FTReading/src/Force.h
 algorithm
 -
 iostream
@@ -18,7 +18,7 @@ fstream
 iomanip
 -
 
-/home/zixin/BionicDL/FTReading/src/Force.h
+/home/zixin/FTReadingTest/FTReading/src/Force.h
 arpa/inet.h
 -
 sys/socket.h
@@ -42,7 +42,7 @@ array
 vector
 -
 
-/home/zixin/BionicDL/FTReading/src/pyFT.cpp
+/home/zixin/FTReadingTest/FTReading/src/pyFT.cpp
 pybind11/pybind11.h
 -
 pybind11/stl.h
@@ -50,7 +50,7 @@ pybind11/stl.h
 vector
 -
 Force.h
-/home/zixin/BionicDL/FTReading/src/Force.h
+/home/zixin/FTReadingTest/FTReading/src/Force.h
 
 /home/zixin/anaconda3/include/python3.7m/Python.h
 patchlevel.h

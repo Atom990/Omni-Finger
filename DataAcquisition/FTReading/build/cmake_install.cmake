@@ -1,4 +1,4 @@
-# Install script for directory: /home/zixin/BionicDL/FTReading
+# Install script for directory: /home/zixin/FTReadingTest/FTReading
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/zixin/BionicDL/FTReading/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/zixin/FTReadingTest/FTReading/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
