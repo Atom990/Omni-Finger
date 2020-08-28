@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d6f38bac-c1bf-4a3e-88e7-b1351673a7d5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/move.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CameraTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/CameraTest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MotionTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/MotionTest.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1gZu75Uar8Vb3uiNouaqvOzdfRg" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunManager" selected="Python.CameraTest">
+    <configuration name="CameraTest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="DataAcquisition" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CameraTest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="DataSaveTest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="DataAcquisition" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/DataSaveTest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="FTSensorTest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="DataAcquisition" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/FTSensorTest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="MotionTest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="DataAcquisition" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MotionTest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="move" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="DataAcquisition" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/move.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.CameraTest" />
+        <item itemvalue="Python.MotionTest" />
+        <item itemvalue="Python.move" />
+        <item itemvalue="Python.DataSaveTest" />
+        <item itemvalue="Python.FTSensorTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d6f38bac-c1bf-4a3e-88e7-b1351673a7d5" name="Default Changelist" comment="" />
+      <created>1598334264853</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1598334264853</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="743" y="297" width="424" height="484" key="FileChooserDialogImpl" timestamp="1598596851733">
+      <screen x="80" y="0" width="1840" height="1080" />
+    </state>
+    <state x="743" y="297" width="424" height="484" key="FileChooserDialogImpl/13.1080.1920.1080/80.0.1840.1080@80.0.1840.1080" timestamp="1598596851733" />
+    <state width="1830" height="278" key="GridCell.Tab.0.bottom" timestamp="1598601908379">
+      <screen x="80" y="0" width="1853" height="2160" />
+    </state>
+    <state width="1897" height="287" key="GridCell.Tab.0.bottom/13.1080.1920.1080/80.0.1840.1080@80.0.1840.1080" timestamp="1598598665091" />
+    <state width="1830" height="278" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1598601810528" />
+    <state width="1830" height="278" key="GridCell.Tab.0.bottom/80.0.1853.2160@80.0.1853.2160" timestamp="1598601908379" />
+    <state width="1830" height="278" key="GridCell.Tab.0.center" timestamp="1598601908378">
+      <screen x="80" y="0" width="1853" height="2160" />
+    </state>
+    <state width="1897" height="287" key="GridCell.Tab.0.center/13.1080.1920.1080/80.0.1840.1080@80.0.1840.1080" timestamp="1598598665091" />
+    <state width="1830" height="278" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1598601810528" />
+    <state width="1830" height="278" key="GridCell.Tab.0.center/80.0.1853.2160@80.0.1853.2160" timestamp="1598601908378" />
+    <state width="1830" height="278" key="GridCell.Tab.0.left" timestamp="1598601908377">
+      <screen x="80" y="0" width="1853" height="2160" />
+    </state>
+    <state width="1897" height="287" key="GridCell.Tab.0.left/13.1080.1920.1080/80.0.1840.1080@80.0.1840.1080" timestamp="1598598665091" />
+    <state width="1830" height="278" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1598601810528" />
+    <state width="1830" height="278" key="GridCell.Tab.0.left/80.0.1853.2160@80.0.1853.2160" timestamp="1598601908377" />
+    <state width="1830" height="278" key="GridCell.Tab.0.right" timestamp="1598601908378">
+      <screen x="80" y="0" width="1853" height="2160" />
+    </state>
+    <state width="1897" height="287" key="GridCell.Tab.0.right/13.1080.1920.1080/80.0.1840.1080@80.0.1840.1080" timestamp="1598598665091" />
+    <state width="1830" height="278" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1598601810528" />
+    <state width="1830" height="278" key="GridCell.Tab.0.right/80.0.1853.2160@80.0.1853.2160" timestamp="1598601908378" />
+    <state width="1897" height="354" key="GridCell.Tab.1.bottom" timestamp="1598345387058">
+      <screen x="80" y="0" width="1840" height="1080" />
+    </state>
+    <state width="1897" height="354" key="GridCell.Tab.1.bottom/13.1080.1920.1080/80.0.1840.1080@80.0.1840.1080" timestamp="1598345387058" />
+    <state width="1897" height="354" key="GridCell.Tab.1.center" timestamp="1598345387058">
+      <screen x="80" y="0" width="1840" height="1080" />
+    </state>
+    <state width="1897" height="354" key="GridCell.Tab.1.center/13.1080.1920.1080/80.0.1840.1080@80.0.1840.1080" timestamp="1598345387058" />
+    <state width="1897" height="354" key="GridCell.Tab.1.left" timestamp="1598345387058">
+      <screen x="80" y="0" width="1840" height="1080" />
+    </state>
+    <state width="1897" height="354" key="GridCell.Tab.1.left/13.1080.1920.1080/80.0.1840.1080@80.0.1840.1080" timestamp="1598345387058" />
+    <state width="1897" height="354" key="GridCell.Tab.1.right" timestamp="1598345387058">
+      <screen x="80" y="0" width="1840" height="1080" />
+    </state>
+    <state width="1897" height="354" key="GridCell.Tab.1.right/13.1080.1920.1080/80.0.1840.1080@80.0.1840.1080" timestamp="1598345387058" />
+    <state x="623" y="237" width="672" height="678" key="search.everywhere.popup" timestamp="1598337085524">
+      <screen x="80" y="0" width="1840" height="1080" />
+    </state>
+    <state x="623" y="237" width="672" height="678" key="search.everywhere.popup/13.1080.1920.1080/80.0.1840.1080@80.0.1840.1080" timestamp="1598337085524" />
+  </component>
+</project>

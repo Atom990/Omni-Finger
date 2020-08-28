@@ -35,10 +35,9 @@ def move_to_next_point(init_pose_, finger, move_direction, stride, move=True):
 
 small_finger = Finger.Finger([78 * np.pi / 180, 84.29 * np.pi / 180], 78.06 * np.pi / 180, 84.41 * np.pi / 180)
 
-# depth_list = [0.008, 0.010, 0.012, 0.014, 0.016, 0.018, 0.020]  # press depth
-depth_list = [0.010]
-D = 0.010  # diameter
-S = 0.005  # stride
+depth_list = [0.010, 0.013, 0.016, 0.019, 0.022]
+D = 0.005  # diameter = 5 mm
+S = 0.005  # stride = 5 mm
 
 # small finger
 calibration_point_pose_base = np.array([0.374560, -0.174580, -0.015080, 2.221, 2.221, 0])
